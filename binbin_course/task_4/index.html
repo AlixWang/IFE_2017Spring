@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #display li{
+            list-style: none;
+            display: inline-block;
+            width: 80px;
+            height: 60px;
+            background-color: palevioletred;
+            margin: 10px;
+            text-align: center;
+            line-height: 60px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <input type="text" id="inputText">
+        <button id="left_in">左侧入</button>
+        <button id="left_out">左侧出</button>
+        <button id="right_in">右侧入</button>
+        <button id="right_out">右侧出</button>
+        <ul id="display">
+            <!--<li></li>
+            <li></li>
+            <li></li>
+            <li></li>-->
+        </ul>
+    </div>
+</body>
+<script>
+    var data = [];
+    
+    function constructorData(){
+        var targetUl = document.getElementById('container');
+       
+            targetUl.addEventListener('click',function(e){
+                if(e.target.id == 'left_in'){
+                    console.log('left in');
+                    handleLeftIn();
+                    render();
+                }else if(e.target.id == 'left_out'){
+                    handleLeftOut();
+                    render();
+                }else if(e.target.id == 'right_in'){
+                    handleRightIn();
+                    render();
+                }else if(e.target.id == 'right_out'){
+                    handleRightOut();
+                    render();
+                }
+            })
+        }
+    
+    function handleLeftIn(){
+        var val = document.getElementById('inputText').value;
+        if(val){
+        data.unshift(val);
+        }else{
+            alert("先输入数值");
+        }
+    }
+    function handleLeftOut(){
+        if(data.length>0){
+        var s = data.shift();
+        alert(s);
+        }else{
+            alert('序列已无，请重新输入数据');
+        }
+    }
+    function handleRightIn(){
+        var val = document.getElementById('inputText').value;
+        if(val){
+        data.push(val);
+        }else{
+            alert("先输入数值");
+        }
+    }
+    function handleRightOut(){
+        if(data.length>0){
+        var s = data.pop();
+        alert(s);
+        }else{
+            alert('序列已无，请重新输入数据');
+        }
+    }
+    function clickDelete(){
+        var display = document.getElementById('display');
+        display.addEventListener('click',function(e){
+            //console.log(data.indexOf(e.target.childNodes[0].nodeValue));
+            if(e.target.nodeName == 'LI'){
+                alert(e.target.childNodes[0].nodeValue);
+                data.splice(e.target.getAttribute('name'),1);
+                render();
+            }
+        });
+    }
+    function render(){
+        console.log(data);
+        var display = document.getElementById('display');
+        var string = '';
+        for(var i = 0;i<data.length;i++){
+            string+=`<li name = ${i}>${data[i]}</li>`;
+        }
+        display.innerHTML =  string;
+    }
+    function initial(){
+        constructorData();
+        clickDelete();
+    }
+    initial();
+</script>
+</html>
