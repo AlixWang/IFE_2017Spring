@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #display li{
+            list-style: none;
+            display: inline-block;
+            width: 20px;
+            height: 60px;
+            background-color: palevioletred;
+            margin: 5px;
+            text-align: center;
+            font-size: 0px;
+            vertical-align: bottom;
+        }
+        #display{
+            height:200px;
+        }
+        
+        
+    </style>
+</head>
+<body>
+    <div id="container">
+        <input type="number" id="inputText">
+        <button id="left_in">左侧入</button>
+        <button id="left_out">左侧出</button>
+        <button id="right_in">右侧入</button>
+        <button id="right_out">右侧出</button>
+        <ul id="display">
+            <!--<li></li>
+            <li></li>
+            <li></li>
+            <li></li>-->
+        </ul>
+        <button id="sort">排序</button>
+    </div>
+</body>
+<script>
+    var data = [];
+    
+    function constructorData(){
+        var targetUl = document.getElementById('container');
+       
+            targetUl.addEventListener('click',function(e){
+                if(e.target.id == 'left_in'){
+                    checkData();
+                    var val = getInputVal()
+                    handleLeftIn(val);
+                    render();
+                }else if(e.target.id == 'left_out'){
+                    handleLeftOut();
+                    render();
+                }else if(e.target.id == 'right_in'){
+                    checkData();
+                    var val = getInputVal()
+                    handleRightIn(val);
+                    render();
+                }else if(e.target.id == 'right_out'){
+                    handleRightOut();
+                    render();
+                }else if(e.target.id == 'sort'){
+                    sortData();
+                }
+            })
+        }
+    // check data length
+    function checkData(){
+        if(data.length>=60){
+            alert('元素超出限制');
+        }
+    }
+
+    // check input data
+    function getInputVal(){
+        var val = document.getElementById('inputText').value;
+        if(val>=10&&val<=100){
+            return val;
+        }else{
+            alert('输入的数值不符合规范，请输入10-100的整数');
+            
+        }
+    }
+
+    function handleLeftIn(val){   
+        data.unshift(val);     
+    }
+    function handleLeftOut(){
+        if(data.length>0){
+        var s = data.shift();
+        alert(s);
+        }else{
+            alert('序列已无，请重新输入数据');
+        }
+    }
+    function handleRightIn(val){
+        data.push(val);
+    }
+    function handleRightOut(){
+        if(data.length>0){
+        var s = data.pop();
+        alert(s);
+        }else{
+            alert('序列已无，请重新输入数据');
+        }
+    }
+    function clickDelete(){
+        var display = document.getElementById('display');
+        display.addEventListener('click',function(e){
+            //console.log(data.indexOf(e.target.childNodes[0].nodeValue));
+            if(e.target.nodeName == 'LI'){
+                alert(e.target.childNodes[0].nodeValue);
+                data.splice(e.target.getAttribute('name'),1);
+                render();
+            }
+        });
+    }
+
+    // render the list from data
+    function render(){
+        console.log(data);
+        var display = document.getElementById('display');
+        var string = '';
+        for(var i = 0;i<data.length;i++){
+            string+=`<li name = ${i}>${data[i]}</li>`;
+        }
+        display.innerHTML =  string;
+        showHeight();
+    }
+
+    //use the element nodevalue display it's height 
+    function showHeight(){
+        var ss = document.getElementById('display');
+        var tt = ss.getElementsByTagName('li');
+        for(var i = 0 ; i < tt.length;i++){
+            tt[i].style.height = tt[i].childNodes[0].nodeValue+"px";
+        }
+    }
+
+    // sort function
+    function sortData(){
+        for(var i = 0;i<data.length;i++){
+            for(var j = 0;j<data.length-i;j++){
+                if(data[j]>data[j+1]){
+                    var arr;
+                    arr = data[j+1];
+                    data[j+1]=data[j];
+                    data[j]=arr;
+                    setTimeout(render(),2000);
+                }
+            }
+        }
+    }
+
+    // initial the function
+    function initial(){
+        constructorData();
+        clickDelete();
+    }
+    initial();
+</script>
+</html>
