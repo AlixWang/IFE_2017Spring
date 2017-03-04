@@ -3,13 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <style>
+        #divtextarea{
+            width: 400px;
+            height: 400px;
+            border: 1px solid black;
+        }
+        #divtextarea span{
+            color: red;
+        }
+    </style>
 </head>
 <body>
     <div id="container">
-        <textarea style="width: 600px;height: 400px;"></textarea>
+        <!--<textarea cols='50' rows="10">initial character<h1>sdfsd</h1></textarea>-->
+        <div id="divtextarea" contenteditable="true">yes this is text</div>
         <br>
         <input type="text" id="checkChar">
         <button id="check">查询</button>
     </div>
 </body>
+<script>
+    
+    // add style for checked words
+    function addSpan(match){
+        return '<span>'+match+"</span>";
+    }
+
+    // check and add replace checked word
+    function check(){
+        console.log(1);
+        var inputVal = document.getElementById('checkChar').value;
+        var checkVal = document.getElementById('divtextarea').innerText;
+        if(!inputVal){
+            alert('请输入要查询的词');
+        }else if(!checkVal){
+            alert("对不起，您暂未输入任何需要查询的词");
+        }
+        var reg = RegExp(inputVal,'gi');
+        
+        var newInner = checkVal.replace(reg,addSpan);
+        console.log(newInner);
+        document.getElementById('divtextarea').innerHTML = newInner;
+    }
+    // bind event
+    function bindClick(elem){
+        
+        elem.addEventListener('click',check);
+    }
+    var element = document.getElementById('check');
+    bindClick(element)
+</script>
 </html>
