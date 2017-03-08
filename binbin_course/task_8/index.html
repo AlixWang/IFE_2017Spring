@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .div{
+            width: 600px;
+            margin: 40px auto;
+        }
+       
+
+        #root,.child_1,.child_2,.child_3,#child_3{
+            border: 2px solid black;
+            display: flex;
+            display: -webkit-flex;
+            align-items: center;
+            justify-content: space-around;
+            
+        }
+        #root{
+            width: 1200px;
+            height: 200px;
+            margin: 0 auto;
+            
+        }
+        #child_3{
+            width: 50px;
+            height: 150px;
+        }
+        .child_1{
+            width: 520px;
+            height: 150px;
+           
+        }
+        .child_2{
+            width: 200px;
+            height: 100px;
+        }
+        .child_3{
+            width: 60px;
+            height: 80px;
+        }
+        .active{
+            background-color: rgb(0,255,199);
+        }
+    </style>
+</head>
+<body>
+    <div id="root">root
+        <div id="child_1" class="child_1">child_1
+            <div id="child_1_1" class="child_2">
+                <div id="child_1_1_1" class="child_3">child</div>
+                <div id="child_1_1_2" class="child_3">child</div>
+                <div id="child_1_1_3" class="child_3">child</div>
+            </div>
+            <div id="child_1_2" class="child_2">child
+                <div id="child_1_2_1" class="child_3">child</div>
+                <div id="child_1_2_2" class="child_3">child</div>
+            </div>
+        </div>
+        <div id="child_2" class="child_1">child_2
+            <div id="child_2_1" class="child_2">
+               child
+                <div id="child_2_1_2" class="child_3">child</div>
+            </div>
+            <div id="child_2_2" class="child_2">
+                <div id="child_2_2_1" class="child_3">child</div>
+                <div id="child_2_2_2" class="child_3">child</div>
+            </div>
+        </div>
+        <div id="child_3">child</div>
+    </div>
+    <div class="div" id="click_div">
+    <button id="back_traversal">直接遍历</button>
+    </div>
+</body>
+<script src="./traversalTree.js"></script>
+</html>
