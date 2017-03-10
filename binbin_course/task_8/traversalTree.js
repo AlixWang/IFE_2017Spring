@@ -2,7 +2,7 @@ var root = document.getElementById('root');
 var elem = document.getElementById('click_div');
 var nodes = [];
 
-function widthSearch(node){
+function deepSearch(node){
     if(node.nodeType ===  1){
         nodes.push(node);
         if(node.hasChildNodes){
@@ -17,29 +17,51 @@ function widthSearch(node){
     }
 }
 
+function widthSearch(node){
+    if(node.nodeType === 1){
+        
+        if(nodes.hasChildNodes){
+            nodes.firstElementChild
+        }
+        nodes.push(node);
+    }
+}
 
+var flag = false;
 function clickBind(elem){
+
     elem.addEventListener('click',function(event){
         if(event.target.id == 'front_traversal'){
             nodes = [];
             front(root);
-            renderChild(nodes);
-        }else if(event.target.id == 'middle_traversal'){
+            if(!flag){
+                renderChild(nodes);
+            }
+            
+        }else if(event.target.id == 'width_traversal'){
             nodes = [];
             middle(root);
-            renderChild(nodes);
-        }else if(event.target.id == 'back_traversal'){
+            if(!flag){
+                renderChild(nodes);
+            }
+            
+        }else if(event.target.id == 'deep_traversal'){
             nodes = [];
-            widthSearch(root);
-            console.log(nodes);
-            renderChild(nodes);
+            deepSearch(root);
+            if(!flag){
+                console.log(nodes);
+                renderChild(nodes);
+            }
+            
         }
-    })
+    });
+
 }
 
 
 
 function renderChild(data){
+    flag = true;
     var i = 0;
     var timer = setInterval(function(){
     var timer2 = null;  
@@ -54,6 +76,7 @@ function renderChild(data){
                 },300);
             i++;       
         }
-    },500);    
+    },500);
+    flag = false;    
 }
 clickBind(elem);

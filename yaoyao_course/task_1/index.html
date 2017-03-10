@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>单个表单项的检验</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <form class="form-inline">
+                    <div class="form-group col-xs-12">
+                        <label for='input1' class="control-label">Name</label>                        
+                            <input type="email" class="form-control" id="inputEmail3" placeholder="name" aria-describedby="helpBlock">                           
+                            
+                            <button type="button" class="btn btn-primary ">确认</button>
+                            <span id="helpBlock" class="help-block">必填，长度为4-16个字符</span>                                                   
+                    </div>
+                    <div class="form-group col-xs-12">
+                        <label for='input1' class="control-label">Name</label>                        
+                            <input type="email" class="form-control" id="inputEmail3" placeholder="name" aria-describedby="helpBlock">                           
+                            
+                            <button type="button" class="btn btn-primary ">确认</button>
+                            <span id="helpBlock" class="help-block">每个英文字母、数字、英文符号长度为1</span>                                                   
+                    </div>
+                    <div class="form-group col-xs-12">
+                        <label for='input1' class="control-label">Name</label>                        
+                            <input type="email" class="form-control" id="inputEmail3" placeholder="name" aria-describedby="helpBlock">                           
+                            
+                            <button type="button" class="btn btn-primary ">确认</button>
+                            <span id="helpBlock" class="help-block">每个汉字，中文符号长度为2</span>                                                   
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>

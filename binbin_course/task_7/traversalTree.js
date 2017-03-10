@@ -34,26 +34,37 @@ function clickBind(elem){
     elem.addEventListener('click',function(event){
         if(event.target.id == 'front_traversal'){
             nodes = [];
+            clearInterval(timer);
             front(root);
             renderChild(nodes);
+
+
         }else if(event.target.id == 'middle_traversal'){
             nodes = [];
+            
+            clearInterval(timer);
             middle(root);
             renderChild(nodes);
+            
+            
         }else if(event.target.id == 'back_traversal'){
             nodes = [];
+            
+            clearInterval(timer);
             back(root);
             console.log(nodes);
             renderChild(nodes);
+            
+
         }
     })
 }
 
-
+var timer = null;
 
 function renderChild(data){
     var i = 0;
-    var timer = setInterval(function(){
+        timer = setInterval(function(){
     var timer2 = null;  
         if(i>=nodes.length){
             console.log(i);
@@ -66,6 +77,7 @@ function renderChild(data){
                 },300);
             i++;       
         }
-    },500);    
+    },500);
+        
 }
 clickBind(elem);
