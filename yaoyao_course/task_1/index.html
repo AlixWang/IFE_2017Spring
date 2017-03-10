@@ -1,42 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>单个表单项的检验</title>
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
 </head>
+
 <body>
-    <div class="container">
+    <div class="container-fliud">
         <div class="row">
             <div class="col-xs-12">
                 <form class="form-inline">
-                    <div class="form-group col-xs-12">
-                        <label for='input1' class="control-label">Name</label>                        
-                            <input type="email" class="form-control" id="inputEmail3" placeholder="name" aria-describedby="helpBlock">                           
-                            
-                            <button type="button" class="btn btn-primary ">确认</button>
-                            <span id="helpBlock" class="help-block">必填，长度为4-16个字符</span>                                                   
+                    <div class="row">
+                        <div class="form-group col-xs-6 col-xs-offset-4">
+                            <label for='input1' class="control-label">Name</label>
+                            <input type="email" class="form-control" id="inputEmail1" placeholder="name" aria-describedby="helpBlock">
+                            <button type="button" class="btn btn-primary" id="check1">确认</button>
+                            <span id="helpBlock1" class="help-block">必填，长度为4-16个字符</span>
+                        </div>
                     </div>
-                    <div class="form-group col-xs-12">
-                        <label for='input1' class="control-label">Name</label>                        
-                            <input type="email" class="form-control" id="inputEmail3" placeholder="name" aria-describedby="helpBlock">                           
-                            
-                            <button type="button" class="btn btn-primary ">确认</button>
-                            <span id="helpBlock" class="help-block">每个英文字母、数字、英文符号长度为1</span>                                                   
+                    <div class="row">
+                        <div class="form-group col-xs-6 col-xs-offset-4">
+                            <label for='input1' class="control-label">Name</label>
+                            <input type="email" class="form-control" id="inputEmail2" placeholder="name" aria-describedby="helpBlock">
+                            <button type="button" class="btn btn-primary" id="check2">确认</button>
+                            <span id="helpBlock2" class="help-block">每个英文字母、数字、英文符号长度为1</span>
+                        </div>
                     </div>
-                    <div class="form-group col-xs-12">
-                        <label for='input1' class="control-label">Name</label>                        
-                            <input type="email" class="form-control" id="inputEmail3" placeholder="name" aria-describedby="helpBlock">                           
-                            
-                            <button type="button" class="btn btn-primary ">确认</button>
-                            <span id="helpBlock" class="help-block">每个汉字，中文符号长度为2</span>                                                   
+
+                    <div class="row">
+                        <div class="form-group col-xs-6 col-xs-offset-4">
+                            <label for='input1' class="control-label">Name</label>
+                            <input type="email" class="form-control" id="inputEmail3" placeholder="name" aria-describedby="helpBlock">
+                            <button type="button" class="btn btn-primary " id="check3">确认</button>
+                            <span id="helpBlock3" class="help-block">每个汉字，中文符号长度为2</span>
+                        </div>
                     </div>
                 </form>
             </div>
-            
+
         </div>
     </div>
 </body>
+<script>
+    var checkData = {
+        getInputVal: function (id) {
+            return document.getElementById(id).value;
+        },
+        getElem: function (id) {
+            return document.getElementById(id);
+        }
+        ,
+        iniReg: function (reg, para) {
+            return new RegExp(reg, para);
+        },
+        checkNum: function (val, reg) {
+            console.log(reg,val);
+            return reg.test(val);
+        },
+        renderResult(elem, mess, styleColor) {
+            elem.parentNode.getElementsByTagName('input')[0].style.borderColor = styleColor;
+            elem.style.color = styleColor;
+            elem.innerText = mess;
+        },
+        bindEvent: function (elem, type, handle) {
+            if (window.addEventListener) {
+                elem.addEventListener(type, handle);
+            } else if (window.attachEvent) {
+                elem.attachEvent('on' + type, handle);
+            } else {
+                elem['on' + type] = handle;
+            }
+        }
+    }
+
+    function init(id1, id2, id3, reg, mess, typeColor) {
+        checkData.bindEvent(checkData.getElem(id1), 'click', function () {
+            if (checkData.getInputVal(id2)) {
+                console.log(checkData.checkNum(checkData.getInputVal(id2), checkData.iniReg(reg, '')));
+                if (checkData.checkNum(checkData.getInputVal(id2), checkData.iniReg(reg, ''))) {
+                    checkData.renderResult(checkData.getElem(id3), mess[1], typeColor[1]);
+                } else {
+                    checkData.renderResult(checkData.getElem(id3), mess[2], typeColor[0])
+                }
+            } else {
+                checkData.renderResult(checkData.getElem(id3), mess[0], typeColor[0]);
+            }
+        });
+    }
+    init('check1', 'inputEmail1', 'helpBlock1', '^\\S{4,16}$', ['请输入数据', '数据输入正确', '数据输入错误'], ['#f21', '#0f2']);
+
+    init('check2', 'inputEmail2', 'helpBlock2', '^[a-zA-Z0-9]{3}&', ['请输入数据', '数据输入正确', '数据输入错误'], ['#f21', '#0f2']);
+    init('check3', 'inputEmail3', 'helpBlock3', '[^\x00-\xff]', ['请输入数据', '数据输入正确', '数据输入错误'], ['#f21', '#0f2']);
+    
+</script>
+
 </html>
