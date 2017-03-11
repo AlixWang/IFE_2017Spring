@@ -1,0 +1,35 @@
+/* CSS Document */
+body,div,form,input,select,label{
+	margin: 0;
+	padding: 0;
+}
+
+#main{
+	width: 600px;
+	margin: 200px auto;
+	text-align: center;
+}
+
+#main .single-sele{
+	width: 100%;
+	height: 80px;
+}
+#main lable{
+	margin-right: 100px;
+}
+select{
+	width: 200px;
+	border-radius: 5px;
+	border: 1px solide #2A7DD4;
+	margin-bottom: 80px;
+}
+.selectWork {
+	visibility: hidden;
+}
+.selectWork input{
+	width: 200px;
+	width: 200px;
+	border-radius: 5px;
+	border: 1px solide #2A7DD4;
+}
+

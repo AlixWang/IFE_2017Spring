@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./main.css">
+</head>
+<body>
+    <div id="main">
+        <form action="#">
+        <div class="single-sele ct">
+           <lable for="student">在校生
+            <input type="radio" id="student" name="type" value="student" checked >
+           </lable>
+           <lable for="nonstudent">非在校生
+            <input type="radio" id="nonstudent" name="type" value="nonstudent">
+           </lable>
+        </div>
+        <div class="citySelect" id="citySelect">
+        	<lable for="city">城市
+        		<select name="city" id="city">
+        			<option value="beijing">北京</option>
+        			<option value="nanjing">南京</option>
+        			<option value="hangzhou">杭州</option>
+        			<option value="guangzhou">广州</option>
+        		</select>
+        	</lable>
+        	<lable for="college">学校
+        		<select name="college" id="college">
+        			<option value="b1">b1</option>
+        			<option value="b2">b2</option>
+        			<option value="b3">b3</option>
+        			<option value="b4">b4</option>
+        		</select>
+        	</lable>
+        </div>
+        <div class="selectWork" id="selectWork">
+        	<lable for="work">就业单位<input type="text" id="work" placeholder="请输入就业单位"></lable>
+        </div>
+    </form>
+    </div>
+    <script src="./main.js"></script>
+</body>
+</html>
