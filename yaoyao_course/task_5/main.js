@@ -163,6 +163,153 @@ function ractDirection(val, elem) {
 
             }
             break;
+        case 'TRA LEF':
+            var border = judgeBorder(elem);
+            var trueNum = judgeUlternate();
+            if (border[0] > 0) {
+                ractangleMove.left(elem);
+            } else {
+                alert("即将过界");
+            }
+            break;
+        case 'TRA TOP':
+            var border = judgeBorder(elem);
+            var trueNum = judgeUlternate();
+            if (border[1] > 0) {
+                ractangleMove.top(elem);
+            } else {
+                alert('即将过界');
+            }
+            break;
+        case 'TRA RIG':
+            var border = judgeBorder(elem);
+            var trueNum = judgeUlternate();
+            if (border[0] < 360) {
+                ractangleMove.right(elem);
+            } else {
+                alert("即将过界");
+            }
+            break;
+        case 'TRA BOT':
+            var border = judgeBorder(elem);
+            var trueNum = judgeUlternate();
+            if (border[1] < 360) {
+                ractangleMove.bottom(elem);
+            } else {
+                alert("即将过界");
+            }
+            break;
+        case 'MOV LEF':
+            var border = judgeBorder(elem);
+            var trueNum = judgeUlternate();
+            if (trueNum === 1) {
+                if (border[0] > 0) {
+                    console.log(1);
+                    ractangleMove.left(elem);
+                } else {
+                    alert("即将过界");
+                }
+            } else {
+                console.log(2);
+                while (trueNum != 1) {
+                    if (iniDeg) {
+                        var num = iniDeg[0] - 90;
+                        console.log(num);
+                        elem.style.transform = 'rotate(' + num + 'deg)';
+                        dir.dir += 1;
+                        trueNum = judgeUlternate();
+                    } else {
+                        elem.style.transform = 'rotate(-90deg)';
+                        dir.dir += 1;
+                        trueNum = judgeUlternate();
+
+
+                    }
+
+                }
+                if (border[0] > 0) {
+                    console.log(1);
+                    setTimeout(ractangleMove.left(elem), 1000);
+                } else {
+                    alert("即将过界");
+                }
+
+            }
+            break;
+        case 'MOV RIG':
+            var border = judgeBorder(elem);
+            var trueNum = judgeUlternate();
+            if (trueNum === 3) {
+                if (border[0] < 360) {
+                    console.log(1);
+                    ractangleMove.right(elem);
+                } else {
+                    alert("即将过界");
+                }
+            } else {
+                console.log(2);
+                while (trueNum != 3) {
+                    if (iniDeg) {
+                        var num = iniDeg[0] - 90;
+                        console.log(num);
+                        elem.style.transform = 'rotate(' + num + 'deg)';
+                        dir.dir += 1;
+                        trueNum = judgeUlternate();
+                    } else {
+                        elem.style.transform = 'rotate(-90deg)';
+                        dir.dir += 1;
+                        trueNum = judgeUlternate();
+
+
+                    }
+
+                }
+                if (border[0] < 360) {
+                    console.log(1);
+                    setTimeout(ractangleMove.right(elem), 1000);
+                } else {
+                    alert("即将过界");
+                }
+
+            }
+            break;
+            case 'MOV BOT':
+            var border = judgeBorder(elem);
+            var trueNum = judgeUlternate();
+            if (trueNum === 2) {
+                if (border[0] > 0) {
+                    console.log(1);
+                    ractangleMove.bottom(elem);
+                } else {
+                    alert("即将过界");
+                }
+            } else {
+                console.log(2);
+                while (trueNum != 2) {
+                    if (iniDeg) {
+                        var num = iniDeg[0] - 90;
+                        console.log(num);
+                        elem.style.transform = 'rotate(' + num + 'deg)';
+                        dir.dir += 1;
+                        trueNum = judgeUlternate();
+                    } else {
+                        elem.style.transform = 'rotate(-90deg)';
+                        dir.dir += 1;
+                        trueNum = judgeUlternate();
+
+
+                    }
+
+                }
+                if (border[1] < 360) {
+                    console.log(1);
+                    setTimeout(ractangleMove.bottom(elem), 1000);
+                } else {
+                    alert("即将过界");
+                }
+
+            }
+            break;
     }
 }
 
