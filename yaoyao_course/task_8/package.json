@@ -1,0 +1,10 @@
+{
+  "name": "js framework spider",
+  "version": "0.0.1",
+  "author": "alixwang",
+  "dependencies": {
+    "cheerio": "^0.22.0",
+    "express": "^4.15.2",
+    "superagent": "^3.5.0"
+  }
+}
