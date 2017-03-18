@@ -1,0 +1,40 @@
+.table_components{
+    margin:80px auto;
+    width: 600px;
+}
+
+.table_components table thead{
+    background-color: #333;
+    border: none;
+    color: #fff;
+    height:40px;
+    line-height:40px;
+}
+.table_components table thead th{
+    width:120px;
+    text-align: center;
+    cursor: pointer;
+}
+.table_components table thead .activeUp{
+    margin-left: 5px;
+    display: inline-block;
+    border-top: 12px solid #fff;
+    border-left: 8px solid #333;
+    border-right: 8px solid #333;
+    
+}
+.table_components table thead .activeDown{
+    margin-left: 5px;
+    display: inline-block;
+    border-bottom: 12px solid #fff;
+    border-left: 8px solid #333;
+    border-right: 8px solid #333;
+
+}
+.table_components table tbody td{
+    width: 120px;
+    text-align: center;
+    height: 40px;
+    background-color: #eee;
+    color: #888;
+}

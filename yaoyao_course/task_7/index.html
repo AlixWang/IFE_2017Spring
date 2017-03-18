@@ -8,11 +8,22 @@
     <link rel="stylesheet" href="./table.css">
 </head>
 <body>
-    <did id="table_components"></did>
+<div class="container">
+
+    <div id="table_components" class="table_components">
+
+    </div>
+    <div id="table_components1" class="table_components">
+
+    </div>
+</div>
+
 </body>
 <script src="./table.js"></script>
 <script>
-    var table1 = new Table('table_components','up',[['小米',53,76,81],['小刘',81,65,71],['小明',71,65,59]]);
-    table1.createTable();
+    var table1 = new Table('table_components',[['小米',53,76,81],['小刘',81,65,71],['小明',71,65,59]]);
+    table1.showTab();
+    var table2 = new Table('table_components1',[['alice',53,76,81],['bob',81,65,71],['nona',71,65,59],['sdaa',23,14,81]]);
+    table2.showTab();
 </script>
 </html>
