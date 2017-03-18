@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .container {
+            width: 200px;
+            margin: 100px auto;
+        }
+        
+        .container .radio {
+            border: 1px solid #aed;
+        }
+        .container lable{
+            position: relative;
+            z-index: 999;
+            width: 24px;
+            height: 24px;
+            display: block;
+            margin: 10px;
+            background-color:white; 
+
+        }
+        .container input{
+            position: absolute;
+            z-index: 1;
+            margin-top: 8px;
+            margin-left: 16px;
+        }
+        .container .radiolable{
+            background-image: url('./img/ic_check_box_24px.png');
+            background-repeat: no-repeat;
+            background-position:center -48px;
+        }
+        .container .active{
+            background-image: url('./img/ic_check_box_24px.png');
+            background-repeat: no-repeat;
+            background-position:center -72px;
+        }
+        .container .checkboxlable{
+            background-image: url('./img/ic_check_box_24px.png');
+            background-repeat: no-repeat;
+            background-position:center -24px;
+        }
+        .container .active1{
+            background-image: url('./img/ic_check_box_24px.png');
+            background-repeat: no-repeat;
+            background-position:center 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">       
+            <input type="radio" class="radio1" id="radio1"><lable class="radiolable" for="radio1">
+        </lable>       
+            <input type="checkbox" class="checkbox1" id="checkbox1"><lable class="checkboxlable" for="checkbox1">
+        </lable>
+    </div>
+
+</body>
+<script>
+    var radio1 = document.getElementById('radio1');
+    var checkbox1 = document.getElementById('checkbox1');
+    var radiolable = document.getElementsByClassName('radiolable')[0];
+    var checkboxlable = document.getElementsByClassName('checkboxlable')[0];
+
+    radiolable.addEventListener('click',function(){
+        console.log(radio1.checked);
+        if(radio1.checked){
+            radiolable.className = 'radiolable';
+            radio1.checked = false;
+        }else{
+            radiolable.className = 'active';
+            radio1.checked = true;
+        }
+    });
+    checkboxlable.addEventListener('click',function(){
+        console.log(radio1.checked);
+        if(checkbox1.checked){
+            checkboxlable.className = 'checkboxlable';
+            checkbox1.checked = false;
+        }else{
+            checkboxlable.className = 'active1';
+            checkbox1.checked = true;
+        }
+    });
+</script>
+</html>
