@@ -1,47 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
     <style>
-        *{border: 0;padding:0;} /* innitial the default style */
-        .pic_main{
+            * {
+            border: 0;
+            padding: 0;
+        }
+        /* innitial the default style */
+        
+        .pic_main {
             width: 800px;
             height: 400px;
             margin: 0 auto;
-            border: 1px solid red;
-            background: url('http://77uca3.com1.z0.glb.clouddn.com/image.jpg') no-repeat -60px -100px;    
+            overflow: hidden;
+            position: relative;
         }
-        .div_border{
+        
+        .pic_main img {
+            width: 800px;
+        }
+        
+        .pic_main img:hover {
+            filter: blur(2px);
+        }
+        
+        .div_border {
+            position: absolute;
+            top: 10px;
+            left: 100px;
             width: 600px;
             height: 300px;
-            margin: 0 auto;
+            margin: 40px auto;
             animation: myfirst 5s 3;
-
+            pic_main-sizing: border-box;
+            text-align: center;
+            background-image: linear-gradient(90deg, #A84444 10%, #A86544 20%, #A89844 30%, #88A844 40%, #51A844 50%, #44A865 60%, #44A89A 70%, #4469A8 80%, #6D44A8 90%, #A8447E 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: load 2s infinite linear;
+            background-size: 200% 100%;
         }
-        @-webkit-keyframes myfirst{
-            from{
-                border:none;
+        
+        @keyframes load {
+            0% {
+                background-position: 0 0;
             }
-            to{
-              border:2px solid red;
+            100% {
+                background-position: -200% 0;
             }
         }
-
-        .text_multcolor{
-
+        
+        .pic_main .div_border:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            border: 3px solid #222;
+            border-width: 0 3px;
+            visibility: hidden;
+            height: 0;
+            width: 100%;
+            transition: all 1s;
+            box-sizing: border-box
         }
-        .type_click{
-
+        
+        .pic_main .div_border:after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 0%;
+            border: 3px solid #222;
+            border-width: 3px 0px;
+            height: 100%;
+            width: 0;
+            transition: all 1s;
+            box-sizing: border-box
         }
+        
+        .container:hover .div_border:before {
+            top: 0%;
+            content: "";
+            visibility: visible;
+            height: 100%;
+        }
+        
+        .container:hover .div_border:after {
+            content: "";
+            left: 0px;
+            visibility: visible;
+            width: 100%;
     </style>
 </head>
+
 <body>
     <div class="pic_main">
+        <img src="http://77uca3.com1.z0.glb.clouddn.com/image.jpg" alt="">
         <div class="div_border">
             <h1 class="text_multcolor">HI THIS IS JUST A DEMO</h1>
             <p class="type_click">CLICK HERE</p>
         </div>
     </div>
 </body>
+
 </html>
