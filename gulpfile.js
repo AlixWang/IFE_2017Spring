@@ -3,8 +3,8 @@ var gulp = require('gulp'),
 
 gulp.task('watch',function(){
     livereload.listen();
-    gulp.watch('./.*',function(file){
-        
-        server.changed(file.path);
+    gulp.watch('./binbin_course/task_1/*',function(file){
+        console.log(file.path);
+        gulp.src(file.path).pipe(livereload());
     });
 })
