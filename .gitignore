@@ -1,3 +1,4 @@
 .idea/*
 _config.yml
 yaoyao_course/task_8/node_modules/*
+node_modules/*
