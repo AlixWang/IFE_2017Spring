@@ -60,19 +60,30 @@ function Pub(){
     this.events = {};
 }
 
-Pub.prototype.on = function(type,handle){
+Pub.prototype.on = function(event,handle){
     var _this = this;
-    if(!(type in _this.events)){
-        _this.events.type = [];
+    if(!(event in _this.events)){
+        _this.events[event] = [];
     }
-
-    _this.events.type.push(handle);
+    _this.events[event].push(handle);
+    return this;
 }
 
-Pub.prototype.emit = function(type,handle){
+Pub.prototype.emit = function(event){
     var _this = this;
-    for(var i = 0;i<_this.events.type.length;i++){
-
-    }        
-
+    var eventHandles = Array.prototype.slice.call(arguments,1);
+    for( var i = 0;i<_this.events[event].length;i++){
+        _this.events[event][i].apply(_this,eventHandles);
+    }
+    return _this;
 }
+
+var pubsub = new Pub();
+pubsub.on('a',function(data){
+    console.log(1+data);
+});
+
+pubsub.emit('a','这就是我是颜色不一样的烟火');
+
+pubsub.emit('a','我是参数');
+

@@ -10,12 +10,11 @@ function Event(){
 }
 Event.prototype.on = function(attr,cb){
     var _this = this;
-    if(attr in _this.events){
-        _this.events[attr].push(cb);
-    }else{
+    if(!(attr in _this.events)){
         _this.events[attr] = [];
-        return this;
     }
+    _this.events[attr].push(cb);
+    return this;
 }
 
 Event.prototype.off = function(arr){
@@ -29,13 +28,16 @@ Event.prototype.off = function(arr){
 
 Event.prototype.emit = function(attr,...arg){
     var _this = this;
-    _this.events[attr] && _this.events.forEach(function(item){
-        item(...arg);
-    })
+    var handleArg = Array.prototype.slice.call(arguments,1);
+    for(var i = 0;i<_this.events[attr].length;i++){
+        _this.events[attr][i].apply(_this,handleArg);
+    }
+    return _this;
 }
 
 Observer.prototype.$Watch = function(val,handle){
     this.evensBus.on(val,handle);
+    this.evensBus.emit(val);
 }
 
 Observer.prototype.traverse = function(data){
@@ -73,6 +75,8 @@ var app1 = new Observer({name:'alixwang',age:10});
 
 
 app1.data.age = 30;
-app1.$Watch('age',function(oldval,newval){
-    console.log(newval,oldval);
+app1.$Watch('age',function(){
+    console.log(10,20);
 })
+
+app1.data.age = 10;
