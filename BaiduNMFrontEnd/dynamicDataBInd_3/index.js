@@ -15,5 +15,7 @@ Observer.prototype.reverse = function(data){
 }
 
 Observer.prototype.bindItem = function(item){
-    
+    var _this = this;
+
 }
+
