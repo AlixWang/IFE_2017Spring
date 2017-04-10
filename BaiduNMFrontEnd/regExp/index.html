@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body,
+        div,
+        input,
+        button,
+        span {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .container {
+            width: 100%;
+            padding: 30px;
+            margin: 10px auto;
+        }
+        
+        .container div {
+            width: 100%;
+            height: 80px;
+            background-color: #ddd;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            border: 1px solid #ccc;
+            padding-top: 20px;
+            padding-left: 100px;
+        }
+        
+        input,
+        button {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            outline: none;
+            background-color: #fff;
+            border: 1px solid #eee;
+            font-size: 14px;
+            vertical-align: top;
+        }
+        
+        input {
+            width: 200px;
+            height: 40px;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+            padding-left: 10px;
+            -webkit-transition: width 2s ease;
+            -moz-transition: width 2s ease;
+            -ms--webkit-transition: width 2s ease;
+            transition: width 2s ease;
+        }
+        
+        input::-webkit-input-placeholder,
+        input::-moz-placeholder {
+            color: #444;
+        }
+        
+        button {
+            width: 80px;
+            height: 40px;
+            cursor: pointer;
+            line-height: 40px;
+        }
+        
+        button:active {
+            background-color: #26f;
+            color: #fff;
+        }
+        
+        span {
+            border: 1px dashed #333;
+            margin-left: 100px;
+            display: inline-block;
+            line-height: 40px;
+            height: 40px;
+            padding: 0 10px;
+            border-radius: 5px;
+            background-color: #fff;
+            text-align: center;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="phone_num">
+            <input type="text" id="input_phone" placeholder="Please Input Phone Number"><button id="check_num">验证</button><span id="show1"></span>
+        </div>
+        <div class="repeat_word">
+            <input type="text" id="input_word" placeholder="Please Input Word"><button id="check_word">验证</button><span id="show2"></span>
+        </div>
+    </div>
+</body>
+<script>
+    var inputNum = document.getElementById('input_phone'),
+        inputWord = document.getElementById('input_word'),
+        checkNum = document.getElementById('check_num'),
+        checkWord = document.getElementById('check_word');
+
+    inputNum.addEventListener('focus',function(e){
+        inputNum.style.width = 400+'px';
+    });
+    inputNum.addEventListener('blur',function(e){
+        inputNum.style.width = 200+'px';
+    });
+    inputWord.addEventListener('focus',function(e){
+        inputWord.style.width = 400+'px';
+    });
+    inputWord.addEventListener('blur',function(e){
+        inputWord.style.width = 200+'px';
+    });
+    function addEvent(elem, type, handle) {
+        if (window.addEventListener) {
+            elem.addEventListener(type, handle, false);
+        } else if (window.attachEvent) {
+            elem.attachEvent('on' + type, handle);
+        } else {
+            elem['on' + type] = handle;
+        }
+    }
+
+    addEvent(checkNum, 'click', function (e) {
+        if (inputNum.value) {
+            var reg = /^1\d{10}/;
+            console.log(reg.test(inputNum.value));
+            if(reg.test(inputNum.value)){
+                renderData('show1','格式正确','#2f1');
+            }else{
+                renderData('show1','格式错误','red');
+            }
+        } else {
+            renderData("show1",'请输入要验证的电话号码','red');
+        }
+    });
+    addEvent(checkWord, 'click', function (e) {
+       if (inputWord.value) {
+            var reg = /\b([a-zA-Z]+) \1\b/;
+            console.log(reg.test(inputWord.value));
+            if(reg.test(inputWord.value)){
+                renderData('show2','格式正确','#2f1');
+            }else{
+                renderData('show2','格式错误','red');
+            }
+        } else {
+            renderData("show2",'请输入要验证字符串','red');
+        } 
+    });
+
+    function renderData(id,data,color) {
+            var span = document.getElementById(id);
+            span.style.display = 'inline-block';
+            span.innerHTML = data;
+            span.style.color = color;
+        
+    }
+
+</script>
+
+</html>
