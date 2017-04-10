@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Rewrite Right Click Menu</title>
+    <style>
+        body,div,ul,li,h1{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+        }
+        .container{
+            width: 100%;
+            height: 400px;
+            background-color: #ddd;
+            padding: 50px;
+        }
+
+        .container .click_content{
+            width: 100%;
+            height: 300px;
+            text-align: center;
+            color: #888;
+            line-height: 300px;
+            border: 1px solid #444;
+            border-radius: 20px;
+            cursor: default;
+            position: relative;
+        }
+
+        .click_content .click_menu{
+            width: 200px;
+            list-style: none;
+            position: absolute;
+            visibility: hidden;
+            line-height: 30px;
+            border: 1px solid #222;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="click_content" id="click_content">
+            <h1>Click Here to test the right click</h1>
+            <ul class="click_menu" id="click_menu">
+                <li>Link One</li>
+                <li>Link Two</li>
+                <li>Link Three</li>
+            </ul>
+        </div>
+    </div>
+</body>
+<script>
+    function RightClick(){
+        this.addClick();
+    }
+
+    RightClick.prototype.addClick = function(){
+        var _this = this;
+        var elem = document.getElementById('click_content');
+        elem.addEventListener('contextmenu',function(e){
+            var event = e || window.event;
+            
+                event.preventDefault();
+                var clickX = e.clientX;
+                var clickY = e.clientY;
+                _this.showMenu(clickX,clickY);
+            
+        });
+        elem.addEventListener('click',function(e){
+            console.log(e.target.tagName);
+            if(e.target.tagName == 'LI'){
+                console.log("sss");
+                return false;
+            }else{
+                var clickMenu = document.getElementById('click_menu');
+                clickMenu.style.visibility = 'hidden';
+            }
+            
+        });
+    }
+    RightClick.prototype.showMenu = function(clickX,clickY){
+        console.log(clickX,clickY);
+        var clickMenu = document.getElementById('click_menu');
+        clickMenu.style.top = clickY -50+ 'px';
+        clickMenu.style.left = clickX -50+ 'px';
+        clickMenu.style.visibility = 'visible';
+        
+        
+    }
+    
+    var clickMenu = new RightClick();
+</script>
+</html>
