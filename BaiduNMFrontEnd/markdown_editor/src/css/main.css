@@ -1,0 +1,10 @@
+/* reset default style */
+body,div,p,ul,li,h2,h3,h4{
+    margin: none;
+    padding: none;
+    box-sizing: border-box;
+}
+a{
+    text-decoration: none;
+}
+
