@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        function loadEvent(handle) {
+            var oldEvent = window.onlaod;
+            if (typeof window.onlaod != 'function') {
+                window.onload = handle;
+            } else {
+                window.onload = function () {
+                    handle();
+                    oldEvent();
+                }
+            }
+        }
+        function init(){
+            var dom = document.getElementById('div1');
+            dom.addEventListener('mouseover',function(e){
+                startMove(e.currentTarget,0);
+            })
+            dom.addEventListener('mouseout',function(e){
+                startMove(e.currentTarget,-190);
+            })
+        }
+        var timer = null;
+        function startMove(dom,iTarget){
+                clearInterval(timer);
+                timer = setInterval(function(){
+                var ispeed = (dom.offsetLeft>iTarget?Math.floor((iTarget-dom.offsetLeft)/10):-Math.floor((dom.offsetLeft-iTarget)/10));
+                if(iTarget == dom.offsetLeft){
+                    clearInterval(timer);
+                }else{
+                    dom.style.left = dom.offsetLeft + ispeed + 'px';
+                }
+            },30);
+        }
+
+
+        loadEvent(init);
+    </script>
+    <style>
+        div {
+            width: 200px;
+            height: 50px;
+            position: absolute;
+            left: -190px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="div1"></div>
+</body>
+
+</html>

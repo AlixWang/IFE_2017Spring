@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #div1{
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            border: 1px solid #444;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1"></div>
+</body>
+<script>
+    /*
+    * use requestAnimationFrame to rewrite the animation from setInterval
+    */
+
+    var div1 = document.getElementById('div1');
+    var cancel;
+    div1.addEventListener('mouseover',function(){
+        cancelAnimationFrame(cancel);
+        
+        (function start(){
+            startMove(div1,'borderWidth',100);
+            cancel= requestAnimationFrame(start);
+            console.log(1);
+        })();
+    });
+    div1.addEventListener('mouseout',function(){
+        cancelAnimationFrame(cancel);
+        (function start(){
+            startMove(div1,'borderWidth',1);
+            cancel = requestAnimationFrame(start);
+            console.log(1);
+        })();
+    });
+
+    function startMove(obj,attr,value){
+        //cancelAnimationFrame(cancel);
+        var curSty = parseInt(getStyle(obj,attr));
+        console.log('cursty'+curSty);
+        if(curSty>value){
+          var ispend = Math.floor((value-curSty)/10);
+        }else{
+          var ispend = -Math.floor((curSty-value)/10);
+        }
+
+        if(curSty == value){
+            cancelAnimationFrame(cancel);
+        }else{
+            console.log("ispeed"+ispend)
+            obj.style[attr] = curSty + ispend + 'px';
+            console.log("width:"+obj.style.attr);
+        }
+    }
+
+    function getStyle(dom,attr){
+        if(dom.currentStyle){
+            return dom.currentStyle[attr];
+        }else{
+            return getComputedStyle(dom,null)[attr];
+        }
+    }
+</script>
+</html>

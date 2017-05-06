@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        ul>li {
+            list-style: none;
+            width: 100px;
+            height: 50px;
+            background-color: red;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</body>
+<script>
+    function loadEvent(handle) {
+        var oldEvent = window.onlaod;
+        if (typeof window.onlaod != 'function') {
+            window.onload = handle;
+        } else {
+            window.onload = function () {
+                handle();
+                oldEvent();
+            }
+        }
+    }
+    function init() {
+        var oLi = document.getElementsByTagName('li');
+        for (var i = 0; i < oLi.length; i++) {
+            (function (i) {
+                oLi[i].addEventListener('mouseover', function (e) {
+                    
+                    startMove(e.currentTarget, {width:200,opcity:1});
+                })
+                oLi[i].addEventListener('mouseout', function (e) {
+                   
+                    startMove(e.currentTarget, {width:100,opcity:0.3});
+                })
+            })(i)
+        }
+
+    }
+
+    function startMove(dom,iTarget){
+        clearInterval(dom.timer);
+        var keys = Object.keys(iTarget);
+        console.log(iTarget[keys[0]]);
+        dom.timer = setInterval(function(){
+            var ispeed = (dom.offsetWidth > iTarget[keys[0]])?-Math.floor((dom.offsetWidth-iTarget[keys[0]])/10):Math.ceil((iTarget[keys[0]]-dom.offsetWidth)/10);
+
+          
+
+            if(iTarget[keys[0]] == dom.offsetWidth || ispeed == 0){
+                clearInterval(dom.timer);
+            }else{
+                dom.style.width = dom.offsetWidth + ispeed + 'px';
+            }
+        },30);
+    }
+
+    loadEvent(init);
+
+</script>
+
+</html>

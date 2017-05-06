@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #div1{
+            width: 100px;
+            height: 100px;
+            background-color: #333;
+            border: 1px solid #f00;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1"></div>
+</body>
+<script>
+var dom = document.getElementById('div1');
+
+var s = 10;
+
+dom.onmouseover = function(){
+    dom.style.width = parseInt(getStyle(dom,'width'))-10+'px';
+}
+
+/*
+* 主要就是介绍了怎么样获取计算后的css样式
+*/
+
+function getStyle(dom,attr){
+    if(getComputedStyle){
+        return getComputedStyle(dom,null)[attr];
+    }else {
+        return dom.currentStyle()[attr];
+    }
+}
+
+</script>
+</html>
