@@ -1,6 +1,9 @@
+// 声明一个命名空间对象
 var netEasy = {};
 
+// 声明公共方法对象
 netEasy.public = {
+    // 定义事件添加方法
     addEvent: function (type, elem, fn) {
         if (window.addEventListener) {
             elem.addEventListener(type, fn, false);
@@ -10,7 +13,9 @@ netEasy.public = {
             elem['on' + type] = fn;
         }
     },
+    // 定义cookie方法
     cookieUtil: {
+        // 获取cookie
         get: function (name) {
             var cookieName = encodeURIComponent(name) + '=',
                 cookieStart = document.cookie.indexOf(cookieName),
@@ -24,6 +29,7 @@ netEasy.public = {
             }
             return cookieValue;
         },
+        // 设置cookie
         set: function (name, value, expires, path, domain, secure) {
             var cookieText = encodeURIComponent(name) + '=' + encodeURIComponent(value);
             if (expires instanceof Date) {
@@ -40,10 +46,12 @@ netEasy.public = {
             }
             document.cookie = cookieText;
         },
+        // 删除cookie
         unset: function (name, path, domain, secure) {
             this.set(name, '', new Date(0), path, domain, secure);
         }
     },
+    // 封装ajax方法
     ajax: function (url, type, data) {
         var _this = this;
 
@@ -72,6 +80,7 @@ netEasy.public = {
             xhr.open(type, url, true);
         }
     },
+    // 封装表单校验方法
     checkInput: function (obj, type, data) {
         switch (type) {
             case 'exit':
@@ -98,7 +107,9 @@ netEasy.public = {
     }
 }
 
+// 声明功能对象
 netEasy.func = {
+    // 视频弹窗功能
     videoAlert: function () {
         var img = document.getElementsByClassName('off_intro')[0].getElementsByTagName('img')[0];
         var mask = document.getElementsByClassName('mask')[0];
@@ -117,6 +128,7 @@ netEasy.func = {
             video.style.display = 'none';
         });
     },
+    // 轮播图功能
     carousel: function () {
         var banner_img = document.getElementsByClassName('banner_img')[0].getElementsByTagName('a');
         var banner_dot = document.getElementsByClassName('banner_dot')[0].getElementsByTagName('li');
@@ -170,6 +182,7 @@ netEasy.func = {
 
 
     },
+    // 鼠标移入弹出层
     courseAlert: function () {
         var tab_content = document.getElementsByClassName('tab_content');
         console.log(tab_content);
@@ -204,6 +217,7 @@ netEasy.func = {
             })(i);
         }
     },
+    // 登陆校验功能
     loginJudge: function () {
         var isfocus = document.getElementsByClassName('focus')[0],
             focuscomplete = document.getElementsByClassName('focuscomplete')[0],
@@ -274,6 +288,7 @@ netEasy.func = {
         }
 
     },
+    // 顶部bar关闭功能
     closeTopbar: function () {
         var topbar = document.getElementsByClassName('litterBar')[0],
             topbar_close = topbar.getElementsByTagName('i')[0];
