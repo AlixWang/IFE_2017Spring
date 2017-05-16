@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>网易音乐人</title>
+    <link rel="shortcut icon" href="http://s1.music.126.net/music.ico?v1">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.4/jquery.fullpage.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.4/jquery.fullpage.min.css">
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+<body>
+    <div id="header">
+        <div class="header_nav clear">
+        	<a href="#" class="logo"></a>
+        	<ul class="nav_left fl">
+        		<li>
+        			<a href="#">首页</a>	
+        		</li>
+        		<li>
+        			<a href="#">个人中心</a>
+        		</li>
+        		<li>
+        			<a href="#">常见问题</a>
+        			
+        		</li>
+        	</ul>
+        	<ul class="nav_right fr">
+        		<li>加入音乐人</li>
+        		<li>您还未登录，请先<a href="javascript:;">登录</a></li>
+        	</ul>
+        </div>
+    </div>
+    <div id="fullpage">
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section">
+            <div id="footer"></div>
+        </div>
+    </div>
+</body>
+<script>
+    $('#fullpage').fullpage({
+        anchors:['page1','page2','page3','page4','page5','page6','page7','page8','page9'],
+        sectionsColor:['#f00','#00f','#0f0','#456','#a42','#e87','#b87','#1ed','#098'],
+
+        //Scrolling
+		css3: true,
+		scrollingSpeed: 700,
+		autoScrolling: true,
+		fitToSection: true,
+		fitToSectionDelay: 1000,
+		scrollBar: false,
+		easing: 'easeInOutCubic',
+		easingcss3: 'ease',
+		loopBottom: false,
+		loopTop: false,
+		loopHorizontal: true,
+		continuousVertical: false,
+		continuousHorizontal: false,
+		scrollHorizontally: false,
+		interlockedSlides: false,
+		dragAndMove: false,
+		offsetSections: false,
+		resetSliders: false,
+		fadingEffect: false,
+		normalScrollElements: '#element1, .element2',
+		scrollOverflow: false,
+		scrollOverflowReset: false,
+		scrollOverflowOptions: null,
+		touchSensitivity: 15,
+		normalScrollElementTouchThreshold: 5,
+		bigSectionsDestination: null,
+
+        //Accessibility
+		keyboardScrolling: true,
+		animateAnchor: true,
+		recordHistory: true,
+
+        //Navigation
+		menu: '#menu',
+		lockAnchors: false,
+		anchors:['firstPage', 'secondPage'],
+		navigation: true,
+		navigationPosition: 'right',
+		navigationTooltips: [],
+		showActiveTooltip: false,
+		slidesNavigation: false,
+		slidesNavPosition: 'bottom',
+
+    })
+</script>
+</html>
