@@ -114,6 +114,7 @@ netEasy.func = {
         var img = document.getElementsByClassName('off_intro')[0].getElementsByTagName('img')[0];
         var mask = document.getElementsByClassName('mask')[0];
         var video = document.getElementsByClassName('video')[0];
+        var video_player = video.getElementsByTagName('video')[0];
         var close_video = document.getElementById('close_video');
         netEasy.public.addEvent('click', img, function () {
             mask.style.display = 'block';
@@ -121,6 +122,7 @@ netEasy.func = {
         });
         netEasy.public.addEvent('click', close_video, function () {
             mask.style.display = 'none';
+            video.pause();
             video.style.display = 'none';
         });
         netEasy.public.addEvent('click', mask, function () {
