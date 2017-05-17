@@ -122,7 +122,7 @@ netEasy.func = {
         });
         netEasy.public.addEvent('click', close_video, function () {
             mask.style.display = 'none';
-            video.pause();
+            video_player.pause();
             video.style.display = 'none';
         });
         netEasy.public.addEvent('click', mask, function () {
